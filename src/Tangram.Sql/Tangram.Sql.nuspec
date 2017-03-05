@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>Tangram.Sql</id>
+        <version>$version$</version>
+        <title>Tangram.Sql</title>
+        <authors>Sean Comiskey</authors>
+        <owners>Sean Comiskey</owners>
+		<licenseUrl>https://github.com/RagtimeWilly/Tangram/LICENSE</licenseUrl>
+        <projectUrl>https://github.com/RagtimeWilly/Tangram/</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Sql implementation of an event store for use with Tangram library</description>
+		<tags>tangram event sourcing sql</tags>
+		<dependencies>
+			<dependency id="Tangram" version="$version$" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="bin\Release\Tangram.Sql.dll" target="lib\net46\Tangram.Sql.dll" />
+    </files>
+</package>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>Tangram</id>
+        <version>$version$</version>
+        <title>Tangram</title>
+        <authors>Sean Comiskey</authors>
+        <owners>Sean Comiskey</owners>
+		<licenseUrl>https://github.com/RagtimeWilly/Tangram/LICENSE</licenseUrl>
+        <projectUrl>https://github.com/RagtimeWilly/Tangram/</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Light weight .Net event sourcing library</description>
+		<tags>tangram event sourcing</tags>
+    </metadata>
+    <files>
+        <file src="bin\Release\Tangram.dll" target="lib\net46\Tangram.dll" />
+    </files>
+</package>
