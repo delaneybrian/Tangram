@@ -10,6 +10,7 @@
         <projectUrl>https://github.com/RagtimeWilly/Tangram/</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Json serializer implementation for use with Tangram library</description>
+        <copyright>Copyright © Sean Comiskey 2017</copyright>
 		<tags>tangram event sourcing json</tags>
 		<dependencies>
 			<dependency id="Tangram" version="$version$" />
