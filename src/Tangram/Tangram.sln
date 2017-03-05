@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tangram", "Tangram\Tangram.csproj", "{DC4CCEB2-2096-4914-9326-03D1DDE5C5F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tangram.Json", "Tangram.Json\Tangram.Json.csproj", "{27B39F85-9595-4604-A73B-91033A1C6D6D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tangram.Redis", "Tangram.Redis\Tangram.Redis.csproj", "{FF7486B0-C5C9-4647-8F47-726805E58F83}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{99A3D888-ADF8-4106-99E0-C81D3744E513}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tangram.Tests.Integration", "Tangram.Tests.Integration\Tangram.Tests.Integration.csproj", "{B8DE764A-C9C2-49EB-AC67-0D336089AFDC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tangram.Sql", "Tangram.Sql\Tangram.Sql.csproj", "{897115AF-7EC5-4025-A2A2-A05171150BED}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DC4CCEB2-2096-4914-9326-03D1DDE5C5F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC4CCEB2-2096-4914-9326-03D1DDE5C5F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC4CCEB2-2096-4914-9326-03D1DDE5C5F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC4CCEB2-2096-4914-9326-03D1DDE5C5F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27B39F85-9595-4604-A73B-91033A1C6D6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27B39F85-9595-4604-A73B-91033A1C6D6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27B39F85-9595-4604-A73B-91033A1C6D6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27B39F85-9595-4604-A73B-91033A1C6D6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF7486B0-C5C9-4647-8F47-726805E58F83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF7486B0-C5C9-4647-8F47-726805E58F83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF7486B0-C5C9-4647-8F47-726805E58F83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF7486B0-C5C9-4647-8F47-726805E58F83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8DE764A-C9C2-49EB-AC67-0D336089AFDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8DE764A-C9C2-49EB-AC67-0D336089AFDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8DE764A-C9C2-49EB-AC67-0D336089AFDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8DE764A-C9C2-49EB-AC67-0D336089AFDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{897115AF-7EC5-4025-A2A2-A05171150BED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{897115AF-7EC5-4025-A2A2-A05171150BED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{897115AF-7EC5-4025-A2A2-A05171150BED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{897115AF-7EC5-4025-A2A2-A05171150BED}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B8DE764A-C9C2-49EB-AC67-0D336089AFDC} = {99A3D888-ADF8-4106-99E0-C81D3744E513}
+	EndGlobalSection
+EndGlobal
