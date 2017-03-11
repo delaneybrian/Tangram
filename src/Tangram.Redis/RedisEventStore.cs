@@ -11,17 +11,25 @@ namespace Tangram.Redis
         private readonly ConnectionMultiplexer _redis;
         private readonly ISerializer _serializer;
         private readonly int _snapshotFrequency;
+        private readonly bool _snapshottingEnabled;
 
         public RedisEventStore(IRedisConnectionManager connectionManager, ISerializer serializer)
-            : this(connectionManager, serializer, -1)
         {
+            _serializer = serializer;
+            _redis = connectionManager.Redis;
+            _snapshottingEnabled = false;
+            _snapshotFrequency = 0;
         }
 
         public RedisEventStore(IRedisConnectionManager connectionManager, ISerializer serializer, int snapshotFrequency)
         {
+            if (snapshotFrequency <= 0)
+                throw new ArgumentException("Snapshot frequency must be greater than 0 if set", nameof(snapshotFrequency));
+
             _serializer = serializer;
             _snapshotFrequency = snapshotFrequency;
             _redis = connectionManager.Redis;
+            _snapshottingEnabled = true;
         }
 
         public override IEnumerable<IEvent> Save<TAggregate>(TAggregate aggregate)
@@ -35,7 +43,7 @@ namespace Tangram.Redis
 
             var evts = SaveEvents(_redis.GetDatabase(), aggregate).ToList();
 
-            if (SnapshotRequired(evts, _snapshotFrequency))
+            if (_snapshottingEnabled && SnapshotRequired(evts, _snapshotFrequency))
             {
                 var json = _serializer.Serialize(aggregate.ToSnapshot());
 
@@ -62,7 +70,7 @@ namespace Tangram.Redis
             {
                 var aggregate = new TAggregate();
 
-                if (_snapshotFrequency > 0)
+                if (_snapshottingEnabled)
                 {
                     var snapshot = db.StringGet(MakeSnapshotKey(typeof (TAggregate), id));
 

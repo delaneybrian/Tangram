@@ -14,18 +14,27 @@ namespace Tangram.Sql
         private readonly ISqlEventStoreConfiguration _sqlEventStoreConfig;
         private readonly ISerializer _serializer;
         private readonly int _snapshotFrequency;
+        private readonly bool _snapshottingEnabled;
 
         public SqlEventStore(IConnectionFactory connectionFactory, ISqlEventStoreConfiguration sqlEventStoreConfig, ISerializer serializer)
-            : this(connectionFactory, sqlEventStoreConfig, serializer, -1)
-        {
-        }
-
-        public SqlEventStore(IConnectionFactory connectionFactory, ISqlEventStoreConfiguration sqlEventStoreConfig, ISerializer serializer, int snapshotFrequency)
         {
             _connectionFactory = connectionFactory;
             _sqlEventStoreConfig = sqlEventStoreConfig;
             _serializer = serializer;
+            _snapshotFrequency = 0;
+            _snapshottingEnabled = false;
+        }
+
+        public SqlEventStore(IConnectionFactory connectionFactory, ISqlEventStoreConfiguration sqlEventStoreConfig, ISerializer serializer, int snapshotFrequency)
+        {
+            if (snapshotFrequency <= 0)
+                throw new ArgumentException("Snapshot frequency must be greater than 0 if set", nameof(snapshotFrequency));
+
+            _connectionFactory = connectionFactory;
+            _sqlEventStoreConfig = sqlEventStoreConfig;
+            _serializer = serializer;
             _snapshotFrequency = snapshotFrequency;
+            _snapshottingEnabled = true;
         }
 
         public override IEnumerable<IEvent> Save<TAggregate>(TAggregate aggregate)
@@ -42,7 +51,7 @@ namespace Tangram.Sql
             {
                 var evts = SaveEvents(db, aggregate).ToList();
 
-                if (SnapshotRequired(evts, _snapshotFrequency))
+                if (_snapshottingEnabled && SnapshotRequired(evts, _snapshotFrequency))
                 {
                     var snapshot = aggregate.ToSnapshot();
                     var json = _serializer.Serialize(snapshot);
@@ -75,7 +84,7 @@ namespace Tangram.Sql
                 {
                     var aggregate = new TAggregate();
 
-                    if (_snapshotFrequency <= 0)
+                    if (!_snapshottingEnabled)
                         return aggregate;
 
                     var sql = SqlCommandFactory.MakeSelectLatestSnaphot(_sqlEventStoreConfig.SnapshotsTableName, id);
