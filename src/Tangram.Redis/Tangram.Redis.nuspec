@@ -10,11 +10,11 @@
         <projectUrl>https://github.com/RagtimeWilly/Tangram/</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Redis implementation of an event store for use with Tangram library</description>
-        <copyright>Copyright © Sean Comiskey 2017</copyright>
+        <copyright>Copyright ï¿½ Sean Comiskey 2021</copyright>
 		<tags>tangram event sourcing redis</tags>
 		<dependencies>
 			<dependency id="Tangram" version="$version$" />
-			<dependency id="StackExchange.Redis" version="1.2.1"  />
+			<dependency id="StackExchange.Redis" version="2.2.4"  />
         </dependencies>
     </metadata>
     <files>

@@ -1,5 +1,4 @@
-﻿
-namespace Tangram.Sql
+﻿namespace Tangram.Sql
 {
     public class SqlEventStoreConfiguration : ISqlEventStoreConfiguration
     {

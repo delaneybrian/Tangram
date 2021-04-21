@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Tangram.Tests.Integration</RootNamespace>
     <AssemblyName>Tangram.Tests.Integration</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -64,26 +65,26 @@
     <Compile Include="TestDoubles\FakeAggregateUpdated.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Tangram.Json\Tangram.Json.csproj">
-      <Project>{27b39f85-9595-4604-a73b-91033a1c6d6d}</Project>
+      <Project>{58c6cb93-1099-410a-9fd5-c2961edf5cd5}</Project>
       <Name>Tangram.Json</Name>
     </ProjectReference>
     <ProjectReference Include="..\Tangram.Redis\Tangram.Redis.csproj">
-      <Project>{ff7486b0-c5c9-4647-8f47-726805e58f83}</Project>
+      <Project>{2d016c90-7c77-4d5a-bde8-594111d719f7}</Project>
       <Name>Tangram.Redis</Name>
     </ProjectReference>
     <ProjectReference Include="..\Tangram.Sql\Tangram.Sql.csproj">
-      <Project>{897115af-7ec5-4025-a2a2-a05171150bed}</Project>
+      <Project>{5ced0fe7-a7a1-41fc-80ef-c2cb2505d45a}</Project>
       <Name>Tangram.Sql</Name>
     </ProjectReference>
     <ProjectReference Include="..\Tangram\Tangram.csproj">
-      <Project>{dc4cceb2-2096-4914-9326-03d1dde5c5f4}</Project>
+      <Project>{89ad5795-cf7c-456f-b47f-7ed87e5fb565}</Project>
       <Name>Tangram</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
