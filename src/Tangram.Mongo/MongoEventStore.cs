@@ -134,6 +134,8 @@ namespace Tangram.Mongo
 
             using (var session = mongoClient.StartSession())
             {
+                session.StartTransaction();
+
                 try
                 {
                     var current = eventsCollection

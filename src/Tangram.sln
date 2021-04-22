@@ -7,15 +7,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{99A3D888
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tangram.Tests.Integration", "Tangram.Tests.Integration\Tangram.Tests.Integration.csproj", "{B8DE764A-C9C2-49EB-AC67-0D336089AFDC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tangram", "Tangram\Tangram.csproj", "{89AD5795-CF7C-456F-B47F-7ED87E5FB565}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tangram", "Tangram\Tangram.csproj", "{89AD5795-CF7C-456F-B47F-7ED87E5FB565}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tangram.Json", "Tangram.Json\Tangram.Json.csproj", "{58C6CB93-1099-410A-9FD5-C2961EDF5CD5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tangram.Json", "Tangram.Json\Tangram.Json.csproj", "{58C6CB93-1099-410A-9FD5-C2961EDF5CD5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tangram.Redis", "Tangram.Redis\Tangram.Redis.csproj", "{2D016C90-7C77-4D5A-BDE8-594111D719F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tangram.Redis", "Tangram.Redis\Tangram.Redis.csproj", "{2D016C90-7C77-4D5A-BDE8-594111D719F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tangram.Sql", "Tangram.Sql\Tangram.Sql.csproj", "{5CED0FE7-A7A1-41FC-80EF-C2CB2505D45A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tangram.Sql", "Tangram.Sql\Tangram.Sql.csproj", "{5CED0FE7-A7A1-41FC-80EF-C2CB2505D45A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tangram.Mongo", "Tangram.Mongo\Tangram.Mongo.csproj", "{F67E4329-BC91-4392-A167-17FDF5D6F120}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tangram.Mongo", "Tangram.Mongo\Tangram.Mongo.csproj", "{F67E4329-BC91-4392-A167-17FDF5D6F120}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MongoSample", "MongoSample\MongoSample.csproj", "{ADF6103B-FEDA-40AB-8A75-D38A0774C2FF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +49,10 @@ Global
 		{F67E4329-BC91-4392-A167-17FDF5D6F120}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F67E4329-BC91-4392-A167-17FDF5D6F120}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F67E4329-BC91-4392-A167-17FDF5D6F120}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADF6103B-FEDA-40AB-8A75-D38A0774C2FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADF6103B-FEDA-40AB-8A75-D38A0774C2FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADF6103B-FEDA-40AB-8A75-D38A0774C2FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADF6103B-FEDA-40AB-8A75-D38A0774C2FF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
