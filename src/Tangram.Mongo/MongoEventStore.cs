@@ -52,7 +52,6 @@ namespace Tangram.Mongo
             if (_snapshottingEnabled && SnapshotRequired(evts, _snapshotFrequency))
             {
                 var snapshot = aggregate.ToSnapshot();
-                var json = _serializer.Serialize(snapshot);
 
                 var database = mongoClient.GetDatabase(_mongoEventStoreConfiguration.DatabaseName);
 
@@ -61,7 +60,7 @@ namespace Tangram.Mongo
 
                 var mongoEntity = new MongoEntity
                 {
-                    Id = aggregate.Id,
+                    AggregateId = aggregate.Id,
                     Version = snapshot.Version,
                     Payload = _serializer.Serialize(snapshot)
                 };
@@ -100,13 +99,14 @@ namespace Tangram.Mongo
                     return aggregate;
 
                 var latestSnapshot = snapshotsCollection.AsQueryable()
+                    .Where(x => x.AggregateId == id)
                     .OrderBy(x => x.Version)
                     .FirstOrDefault();
 
                 if (latestSnapshot == null)
                     return aggregate;
 
-                var snapshot = (TSnapshot)_serializer.Deserialize<IAggregateSnapshot>(latestSnapshot.Payload.ToString());
+                var snapshot = (TSnapshot)_serializer.Deserialize<IAggregateSnapshot>(latestSnapshot.Payload);
 
                 aggregate.RestoreFromSnapshot(snapshot);
 
@@ -128,19 +128,20 @@ namespace Tangram.Mongo
             var evtsToSave = aggregate.UncommitedEvents().ToList();
             var expected = CalculateExpectedVersion(aggregate, evtsToSave);
 
-            var database = mongoClient.GetDatabase(_mongoEventStoreConfiguration.DatabaseName);
-
-            var eventsCollection = database.GetCollection<MongoEntity>(_mongoEventStoreConfiguration.EventsCollectionName);
-
             using (var session = mongoClient.StartSession())
             {
+                var database = session.Client.GetDatabase(_mongoEventStoreConfiguration.DatabaseName);
+
+                var eventsCollection =
+                    database.GetCollection<MongoEntity>(_mongoEventStoreConfiguration.EventsCollectionName);
+
                 session.StartTransaction();
 
                 try
                 {
                     var current = eventsCollection
                         .AsQueryable()
-                        .Count(x => x.Id == aggregate.Id) - 1;
+                        .Count(x => x.AggregateId == aggregate.Id) - 1;
 
                     if (expected != current)
                     {
@@ -149,13 +150,13 @@ namespace Tangram.Mongo
 
                     var mongoEventsToSave = evtsToSave.Select(e => new MongoEntity
                     {
-                        Id = e.AggregateId,
+                        AggregateId = e.AggregateId,
                         Version = e.Version,
                         Payload = _serializer.Serialize(e)
                     });
 
                     eventsCollection
-                            .InsertMany(session, mongoEventsToSave);
+                        .InsertMany(session, mongoEventsToSave);
 
                     session.CommitTransaction();
                 }
@@ -175,12 +176,13 @@ namespace Tangram.Mongo
             var aggregate = aggregateFunc();
 
             var eventQueryable = collection.AsQueryable()
-                .Where(evt => evt.Id == id && evt.Version < aggregate.Version)
+                .Where(evt => evt.AggregateId == id &&
+                              evt.Version > aggregate.Version)
                 .OrderBy(e => e.Version);
 
             eventQueryable.ForEachAsync(evt =>
             {
-                var deserializeEvent = _serializer.Deserialize<IEvent>(evt.Payload.ToString());
+                var deserializeEvent = _serializer.Deserialize<IEvent>(evt.Payload);
 
                 aggregate.ApplyEvent(deserializeEvent);
             }).Wait();

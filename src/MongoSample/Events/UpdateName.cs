@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Runtime.Serialization;
+using Tangram;
 
 namespace MongoSample.Events
 {
     [DataContract]
-    public class UpdateName
+    public class UpdateName : IEvent
     {
         [DataMember]
         public Guid AggregateId { get; set; }

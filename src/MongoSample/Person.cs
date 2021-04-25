@@ -28,10 +28,6 @@ namespace MongoSample
             });
         }
 
-        public Guid Id { get; set; }
-
-        public int Version { get; set; }
-
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
@@ -75,8 +71,32 @@ namespace MongoSample
             };
         }
 
+        public void UpdateAge(int newAge, DateTime updatedAtUtc, Guid updatedByUserId)
+        {
+            RaiseEvent(new UpdateAge
+            {
+                Age = newAge,
+                AggregateId = Id,
+                UpdatedAtUtc = updatedAtUtc,
+                UpdatedByUserId = updatedByUserId
+            });
+        }
+
+        public void UpdateName(string newFirstName, string newLastName, DateTime updatedAtUtc, Guid updatedByUserId)
+        {
+            RaiseEvent(new UpdateName
+            {
+                FirstName = newFirstName,
+                LastName = newLastName,
+                AggregateId = Id,
+                UpdatedAtUtc = updatedAtUtc,
+                UpdatedByUserId = updatedByUserId
+            });
+        }
+
         private void Apply(CreatePerson evt)
         {
+            Id = evt.AggregateId;
             FirstName = evt.FirstName;
             LastName = evt.LastName;
             Age = evt.Age;

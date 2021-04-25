@@ -5,6 +5,7 @@ using MongoDB.Bson.Serialization.Attributes;
 namespace Tangram.Mongo
 {
     [DataContract]
+    [BsonIgnoreExtraElements]
     internal class MongoEntity
     {
         [BsonConstructor]
@@ -12,9 +13,8 @@ namespace Tangram.Mongo
         { 
         }
 
-        [BsonId]
         [DataMember]
-        public Guid Id { get; set; }
+        public Guid AggregateId { get; set; }
 
         [DataMember]
         public int Version { get; set; }

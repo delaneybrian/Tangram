@@ -25,6 +25,7 @@ namespace MongoSample
 
             builder
                 .RegisterType<MongoEventStore>()
+                .WithParameter("snapshotFrequency", 5)
                 .As<IEventStore>();
 
             return builder.Build();
